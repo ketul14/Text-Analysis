@@ -197,7 +197,7 @@ def wordCloud(words, mask):
     return plt
 
 
-# Generate sentiment using textblob
+# Generate sentiment using textblob - 1
 def sentiment(data, column):
     from textblob import TextBlob
     data['polarity'] = None
@@ -215,6 +215,16 @@ def sentiment(data, column):
             data['sentiment'][i] = 'neutral'
         data['subjectivity'][i] = TextBlob(data[column][i]).sentiment.subjectivity
     return data
+
+# Generate sentiment using textblob - 2 Efficient way
+def sentiment(data, column):
+    from textblob import TextBlob
+
+    data['Polarity'] = data[column].apply(lambda tweet: TextBlob(tweet).sentiment.polarity)
+    data['Subjectivity'] = data[column].apply(lambda tweet: TextBlob(tweet).subjectivity)
+    data['Sentiment'] = data['Polarity'].map(
+                        lambda tweet: 'Positive' if tweet > 0 and tweet != 0
+                        else 'Negative' if tweet < 0 and tweet != 0 else 'Neutral')
 
 #################################################################
 # Ends
