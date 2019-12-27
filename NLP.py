@@ -220,11 +220,11 @@ def sentiment(data, column):
 def sentiment(data, column):
     from textblob import TextBlob
 
-    data['Polarity'] = data[column].apply(lambda tweet: TextBlob(tweet).sentiment.polarity)
-    data['Subjectivity'] = data[column].apply(lambda tweet: TextBlob(tweet).subjectivity)
+    data['Polarity'] = data[column].apply(lambda text: TextBlob(text).sentiment.polarity)
+    data['Subjectivity'] = data[column].apply(lambda text: TextBlob(text).subjectivity)
     data['Sentiment'] = data['Polarity'].map(
-                        lambda tweet: 'Positive' if tweet > 0 and tweet != 0
-                        else 'Negative' if tweet < 0 and tweet != 0 else 'Neutral')
+                        lambda text: 'Positive' if text > 0 and text != 0
+                        else 'Negative' if text < 0 and text != 0 else 'Neutral')
 
 #################################################################
 # Ends
