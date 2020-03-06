@@ -1,0 +1,34 @@
+<style type="text/css" media="screen">
+    #divs div {
+    display:none;
+}
+</style>
+
+
+
+<div>
+<form>
+                   <input id="id_radio1" type="radio" name="name_radio" value="value_radio1" checked="checked"/>Radio1
+                   <input id="id_radio2" type="radio" name="name_radio" value="value_radio2" />Radio2
+                   <input id="id_radio3" type="radio" name="name_radio" value="value_radio3" />Radio3
+                   <input id="id_radio4" type="radio" name="name_radio" value="value_radio4" />Radio4
+                   <input id="id_radio5" type="radio" name="name_radio" value="value_radio5" />Radio5
+</form>
+</div>
+              <div id="divs">
+                   <div id="div1">One</div>
+                   <div id="div2">Two</div>
+                   <div id="div3">Three</div>
+                   <div id="div4">Four</div>
+                   <div id="div5">Five</div>
+              </div>
+<script type="text/javascript" charset="utf-8">
+ $(function() {
+          var $divs = $('#divs > div');
+          $divs.first().show()
+          $('input[type=radio]').on('change',function() {
+                  $divs.hide();
+                  $divs.eq( $('input[type=radio]').index( this ) ).show();
+           });
+});
+</script>
